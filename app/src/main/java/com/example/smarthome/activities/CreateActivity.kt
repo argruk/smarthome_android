@@ -1,4 +1,4 @@
-package com.example.smarthome
+package com.example.smarthome.activities
 
 class CreateActivity : ToolbarHelper() {
 }

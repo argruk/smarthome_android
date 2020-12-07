@@ -1,6 +1,7 @@
-package com.example.smarthome
+package com.example.smarthome.dao
 
 import androidx.room.*
+import com.example.smarthome.entities.RoomEntity
 
 
 @Dao
