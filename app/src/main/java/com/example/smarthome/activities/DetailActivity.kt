@@ -34,7 +34,7 @@ class DetailActivity : ToolbarHelper() {
             override fun connectComplete(reconnect: Boolean, serverURI: String?) {
                 Log.i(TAG, "MQTT Connected")
                 Toast.makeText(applicationContext, "MQTT Connected, subscribing...", Toast.LENGTH_SHORT).show()
-                mqttClient.subscribe("smarthome/<here_we_will_place_device_id_i_guess>", 0) // 0 - is the QoS value
+                sub("device_1")
             }
 
             override fun messageArrived(topic: String?, message: MqttMessage?) {
@@ -53,6 +53,11 @@ class DetailActivity : ToolbarHelper() {
         mqttClient.connect( MqttConnectOptions().apply { isAutomaticReconnect=true })    //  Can also specify options, e.g. :  mqttClient.connect( MqttConnectOptions().apply { isAutomaticReconnect=true } )
 
     }
+
+    fun sub(name:String){
+        mqttClient.subscribe("smarthome/${name}", 0) // 0 - is the QoS value
+    }
+
 
     override fun onDestroy() {
         mqttClient.disconnect()

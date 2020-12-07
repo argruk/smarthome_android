@@ -23,7 +23,6 @@ abstract class ToolbarHelper: AppCompatActivity() {
                 Log.i("Clicked", "Settings will be opened")
             }
         }
-
         return true
     }
 }
