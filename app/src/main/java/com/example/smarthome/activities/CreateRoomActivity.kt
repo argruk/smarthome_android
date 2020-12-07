@@ -1,4 +1,4 @@
-package com.example.smarthome
+package com.example.smarthome.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import com.example.smarthome.R
+import com.example.smarthome.entities.RoomEntity
 import kotlinx.android.synthetic.main.add_room_activity.*
 import java.util.*
 import kotlin.collections.HashMap
