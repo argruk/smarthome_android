@@ -19,6 +19,9 @@
         <activity android:name=".activities.CreateRoomActivity">
 
         </activity>
+        <activity android:name=".activities.CreateActivity">
+
+        </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <meta-data

@@ -2,6 +2,7 @@ package com.example.smarthome.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import android.view.Menu
@@ -17,6 +18,22 @@ import kotlin.collections.HashMap
 
 
 class CreateRoomActivity : ToolbarHelper() {
+
+    private lateinit var mHandler: Handler
+    private lateinit var mRunnable: Runnable
+
+    private fun startMainActivity() {
+
+
+        mRunnable = Runnable {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
+        mHandler = Handler()
+
+        mHandler.postDelayed(mRunnable, 2000)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +51,7 @@ class CreateRoomActivity : ToolbarHelper() {
             db.collection("rooms").document(new_id).set(room)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Room has been added successfully", Toast.LENGTH_SHORT).show()
+                    startMainActivity()
                 }
                 .addOnFailureListener{
                         e -> Toast.makeText(this, "Room has not been added!", Toast.LENGTH_SHORT).show()
