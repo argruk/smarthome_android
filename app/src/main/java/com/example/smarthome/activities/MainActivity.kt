@@ -1,11 +1,8 @@
-package com.example.smarthome
+package com.example.smarthome.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
+import com.example.smarthome.R
 
 class MainActivity : ToolbarHelper() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,5 +14,5 @@ class MainActivity : ToolbarHelper() {
         menuInflater.inflate(R.menu.extra_menu, menu)
         return super.onCreateOptionsMenu(menu);
     }
-    
+
 }
