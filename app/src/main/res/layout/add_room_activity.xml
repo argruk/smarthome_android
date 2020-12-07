@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="101dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="35dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Room Name"
-        app:layout_constraintBottom_toTopOf="@+id/add_room"
+        app:layout_constraintBottom_toTopOf="@+id/icon"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -45,9 +46,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="166dp"
         android:layout_marginEnd="157dp"
-        android:layout_marginBottom="478dp"
+        android:layout_marginBottom="342dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="26dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Icon"
+        app:layout_constraintBottom_toTopOf="@+id/add_room"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
