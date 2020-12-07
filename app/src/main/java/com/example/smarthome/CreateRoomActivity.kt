@@ -9,7 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.add_room_activity.*
 
-class CreateRoomActivity : AppCompatActivity() {
+class CreateRoomActivity : ToolbarHelper() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_room_activity)
