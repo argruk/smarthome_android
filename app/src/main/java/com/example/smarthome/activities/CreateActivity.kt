@@ -20,42 +20,38 @@ class CreateActivity : ToolbarHelper() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_device_activity)
-        setUpFileSpinner()
 
-        add_device.setOnClickListener{
+        add_device.setOnClickListener {
             val title = device_name.text.toString()
-            val state = false
-            val room = room_spinner.selectedItem
-            var roomId = ""
-            val db = FirebaseFirestore.getInstance()
-            var new_id = db.collection("rooms").document().id
+            var pinNumber = pinNumber.text.toString().toInt()
+
+            if (title.isNotEmpty()) {
+                val state = false
+                var roomId = intent.getStringExtra("room_id")
+                val db = FirebaseFirestore.getInstance()
+                var new_id = db.collection("rooms").document().id
 
 
+                val device = Device(new_id, title, roomId, state, pinNumber)
 
-            db.collection("rooms")
-                .whereEqualTo("title", room)
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        roomId = document.data.get("id").toString()
+                db.collection("devices").document(new_id).set(device)
+                    .addOnSuccessListener {
+                        Toast.makeText(
+                            this,
+                            "Device has been added successfully",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        startMainActivity()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Device has not been added!", Toast.LENGTH_SHORT)
+                            .show()
                     }
 
-                    val device =  Device(new_id, title, roomId, state)
 
-                    db.collection("devices").document(new_id).set(device)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Device has been added successfully", Toast.LENGTH_SHORT).show()
-                            startMainActivity()
-                        }
-                        .addOnFailureListener{
-                                e -> Toast.makeText(this, "Device has not been added!", Toast.LENGTH_SHORT).show()
-                        }
-                }
-                .addOnFailureListener { exception ->
-                    Log.w("FireStore", "Error getting documents: ", exception)
-                }
-
-
+            }else{
+                Toast.makeText(this, "Please fill in all inputs", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -73,29 +69,6 @@ class CreateActivity : ToolbarHelper() {
         mHandler = Handler()
 
         mHandler.postDelayed(mRunnable, 2000)
-    }
-
-    private fun setUpFileSpinner() {
-        val rootRef = FirebaseFirestore.getInstance()
-        val subjectsRef = rootRef.collection("rooms")
-        val spinner = findViewById<Spinner>(R.id.room_spinner)
-        val rooms: MutableList<String?> = ArrayList()
-        val adapter = ArrayAdapter(
-            applicationContext,
-            android.R.layout.simple_spinner_item,
-            rooms
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = adapter
-        subjectsRef.get().addOnCompleteListener(OnCompleteListener<QuerySnapshot> { task ->
-            if (task.isSuccessful) {
-                for (document in task.result!!) {
-                    val subject = document.getString("title")
-                    rooms.add(subject)
-                }
-                adapter.notifyDataSetChanged()
-            }
-        })
     }
 
 }

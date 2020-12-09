@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class Device(
     @PrimaryKey(autoGenerate = true) val id: String?,
     val title: String?,
-    val room_id: Any,
-    val state: Boolean?
+    val room_id: String?,
+    val state: Boolean?,
+    val pinNumber: Int?
 )
