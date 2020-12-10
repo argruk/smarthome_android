@@ -3,7 +3,16 @@ package com.example.smarthome.activities
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smarthome.R
+import com.example.smarthome.adapters.DeviceAdapter
+import com.example.smarthome.adapters.RoomAdapter
+import com.example.smarthome.entities.Device
+import com.example.smarthome.entities.RoomEntity
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.room_layout_activity.*
+import kotlinx.android.synthetic.main.room_layout_activity.all_rooms
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended
@@ -20,12 +29,88 @@ class DetailActivity : ToolbarHelper() {
 
     val TAG = "MQTT_COMMUNICATION"
     lateinit var mqttClient: MqttAndroidClient
+    lateinit var roomId: String
+    val db = FirebaseFirestore.getInstance()
+    var devicesList = mutableListOf<Device>()
+    val myAdapter = DeviceAdapter(devicesList, this)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.room_layout_activity)
 
+        roomId = intent.getStringExtra("roomId").toString()
+
+
+
+//        setUpMqtt()
+
+        setUpLayout()
+        all_rooms.layoutManager = LinearLayoutManager(this)
+        all_rooms.adapter = myAdapter
+
+        turn_off_all.setOnClickListener{
+            for(d in devicesList){
+                db.collection("devices")
+                    .document(d.id.toString())
+                    .update("state", false)
+            }
+            devicesList.clear()
+            setUpDeviceStates()
+            Toast.makeText(this, "All devices switched off", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    private fun setUpLayout() {
+        val docRef = roomId?.let { db.collection("rooms").document(it) }
+        docRef.get()
+            .addOnSuccessListener { document ->
+                var roomObj = RoomEntity(document.get("id").toString(), document.get("title").toString(), document.get("icon").toString())
+                roomName.text = roomObj.title
+
+                val id: Int = this.resources.getIdentifier(roomObj.icon.toString(), "drawable", this.packageName)
+                roomImage.setImageResource(id)
+
+                setUpDeviceStates()
+
+            }
+    }
+
+    private fun setUpDeviceStates() {
+        db.collection("devices")
+            .whereEqualTo("room_id", roomId)
+            .get()
+            .addOnSuccessListener { documents ->
+
+                var active = 0
+                var deactive = 0
+
+                for (document in documents) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                    var deviceObj = Device(document.get("id").toString(), document.get("title").toString(), document.get("room_id").toString(), document.get("state").toString().toBoolean(), document.get("pinNumber").toString().toInt())
+                    devicesList.add(deviceObj)
+                    myAdapter.notifyDataSetChanged()
+
+                    var flag: Boolean = document.get("state").toString().toBoolean()
+                    if(flag){
+                        active += 1
+                    }else{
+                        deactive += 1
+                    }
+                }
+
+                active_textView.text = active.toString()
+                inactive_textView.text = deactive.toString()
+
+
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents: ", exception)
+            }
+    }
+
+    private fun setUpMqtt() {
         // set up client
         mqttClient = MqttAndroidClient(this, MQTT_BROKER_IP, "smarthome")
 
@@ -60,7 +145,7 @@ class DetailActivity : ToolbarHelper() {
 
 
     override fun onDestroy() {
-        mqttClient.disconnect()
+//        mqttClient.disconnect()
         super.onDestroy()
     }
 }
