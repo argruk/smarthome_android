@@ -57,7 +57,7 @@ class DetailActivity : ToolbarHelper() {
             }
             devicesList.clear()
             setUpDeviceStates()
-            Toast.makeText(this, "All devices switched off", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.all_devices_turned_off, Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -118,7 +118,7 @@ class DetailActivity : ToolbarHelper() {
 
             override fun connectComplete(reconnect: Boolean, serverURI: String?) {
                 Log.i(TAG, "MQTT Connected")
-                Toast.makeText(applicationContext, "MQTT Connected, subscribing...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, R.string.mqtt_connected, Toast.LENGTH_SHORT).show()
                 mqttClient.subscribe("smarthome/<here_we_will_place_device_id_i_guess>", 0) // 0 - is the QoS value
             }
 

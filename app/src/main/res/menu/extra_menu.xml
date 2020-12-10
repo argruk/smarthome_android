@@ -4,19 +4,19 @@
     <item
         android:id="@+id/add_room"
         android:icon="@drawable/room"
-        android:title="Add Room"
+        android:title="@string/add_room_menu"
         app:showAsAction="collapseActionView" />
 
     <!-- Settings, should always be in the overflow -->
     <item
         android:id="@+id/add_device"
         android:icon="@drawable/lights"
-        android:title="Add Device"
+        android:title="@string/add_device_menu"
         app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/settings"
         android:icon="@drawable/settings"
-        android:title="Settings"
+        android:title="@string/settings"
         app:showAsAction="collapseActionView" />
 </menu>

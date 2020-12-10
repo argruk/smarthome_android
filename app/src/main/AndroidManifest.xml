@@ -27,6 +27,9 @@
         <activity android:name=".activities.DetailActivity">
 
         </activity>
+        <activity android:name=".activities.SettingsActivity">
+
+        </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
         <meta-data

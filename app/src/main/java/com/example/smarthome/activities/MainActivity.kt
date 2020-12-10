@@ -45,10 +45,4 @@ class MainActivity : ToolbarHelper() {
                 Log.w("FireStore", "Error getting documents: ", exception)
             }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.extra_menu, menu)
-        return super.onCreateOptionsMenu(menu);
-    }
-
 }
