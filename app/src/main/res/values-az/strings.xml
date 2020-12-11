@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_rooms">BÜTÜN OTAQLAR</string>
+    <string name="add_device">Cihaz Əlavə Et</string>
+    <string name="device_name">Cihaz Adı</string>
+    <string name="pin_number">Pin Nömrəsi</string>
+    <string name="room_name">Otağın adı</string>
+    <string name="add_room">Otaq Əlavə Et</string>
+    <string name="add">Əlavə Et</string>
+    <string name="icon">Ikon</string>
+    <string name="active">Aktiv</string>
+    <string name="inactive">Deaktiv</string>
+    <string name="turn_off_all_devices">Cihazları söndür</string>
+    <string name="language">Dil</string>
+    <string name="add_room_menu">Otaq Əlavə Et</string>
+    <string name="add_device_menu">Cihaz Əlavə Et</string>
+    <string name="settings">Ayarlar</string>
+    <string name="all_devices_turned_off">Bütün Cihazlar Söndü</string>
+    <string name="state_hasbeen_updated">Vəziyyət dəyişildi</string>
+    <string name="state_doesnt_updated">Vəziyyəti dəyişmək mümkün olmadı</string>
+    <string name="room_hasbeen_added">Room has been added successfully</string>
+    <string name="room_didnt_added">Room has not been added!</string>
+    <string name="fillin_fields">Please, fill in all inputs</string>
+    <string name="device_hasbeen_added">Device has been added successfully</string>
+    <string name="device_dont_added">Device has not been added!</string>
+    <string name="mqtt_connected">MQTT Connected, subscribing...</string>
+    <string name="app_resetted">App has been resetted</string>
+</resources>

@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="ALL ROOMS"
+        android:text="@string/all_rooms"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/all_devices_view"
+        android:id="@+id/all_rooms"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="32dp"
