@@ -38,19 +38,19 @@ class CreateActivity : ToolbarHelper() {
                     .addOnSuccessListener {
                         Toast.makeText(
                             this,
-                            "Device has been added successfully",
+                            R.string.device_hasbeen_added,
                             Toast.LENGTH_SHORT
                         ).show()
                         startMainActivity()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this, "Device has not been added!", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, R.string.device_dont_added, Toast.LENGTH_SHORT)
                             .show()
                     }
 
 
             }else{
-                Toast.makeText(this, "Please fill in all inputs", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.fillin_fields, Toast.LENGTH_SHORT).show()
             }
         }
     }

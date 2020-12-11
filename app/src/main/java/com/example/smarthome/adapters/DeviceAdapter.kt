@@ -48,10 +48,10 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
         val db = FirebaseFirestore.getInstance()
         db.collection("devices").document(id.toString()).update("state", state)
             .addOnCompleteListener {
-                Toast.makeText(context, "State has been updated", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.state_hasbeen_updated, Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener {
-                Toast.makeText(context, "State doesn't updated", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.state_doesnt_updated, Toast.LENGTH_SHORT).show()
             }
     }
 

@@ -52,15 +52,15 @@ class CreateRoomActivity : ToolbarHelper() {
 
                 db.collection("rooms").document(new_id).set(room)
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Room has been added successfully", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, R.string.room_hasbeen_added, Toast.LENGTH_SHORT)
                             .show()
                         startMainActivity()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(this, "Room has not been added!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, R.string.room_didnt_added, Toast.LENGTH_SHORT).show()
                     }
             }else{
-                Toast.makeText(this, "Please, fill in all inputs", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, R.string.fillin_fields, Toast.LENGTH_SHORT).show()
             }
         }
     }
