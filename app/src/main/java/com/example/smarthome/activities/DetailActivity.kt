@@ -1,18 +1,17 @@
 package com.example.smarthome.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smarthome.R
 import com.example.smarthome.adapters.DeviceAdapter
-import com.example.smarthome.adapters.RoomAdapter
 import com.example.smarthome.entities.Device
 import com.example.smarthome.entities.RoomEntity
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.room_layout_activity.*
-import kotlinx.android.synthetic.main.room_layout_activity.all_rooms
+import kotlinx.android.synthetic.main.room_layout_activity.all_devices
 import org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended
@@ -20,6 +19,14 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttMessage
 
 class DetailActivity : ToolbarHelper() {
+    /*
+    * TODO: We need "Back" button, since after we add a device, you cannot go back.
+    *
+    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    *
+    * TODO: Test newer MQTT and rework the communication, so MQTT can parse messages correctly
+    * */
+
     private val MQTT_BROKER_IP = "tcp://10.0.2.2:1883"
     // I mean come on, this is a useful comment
     // Note: If you want to use emulator, and access a broker running on the emulators host (your laptop),
@@ -41,13 +48,9 @@ class DetailActivity : ToolbarHelper() {
 
         roomId = intent.getStringExtra("roomId").toString()
 
-
-
-//        setUpMqtt()
-
         setUpLayout()
-        all_rooms.layoutManager = LinearLayoutManager(this)
-        all_rooms.adapter = myAdapter
+        all_devices.layoutManager = LinearLayoutManager(this)
+        all_devices.adapter = myAdapter
 
         turn_off_all.setOnClickListener{
             for(d in devicesList){
@@ -60,6 +63,7 @@ class DetailActivity : ToolbarHelper() {
             Toast.makeText(this, R.string.all_devices_turned_off, Toast.LENGTH_SHORT).show()
         }
 
+        setUpMqtt()
     }
 
     private fun setUpLayout() {
@@ -68,13 +72,17 @@ class DetailActivity : ToolbarHelper() {
             .addOnSuccessListener { document ->
                 var roomObj = RoomEntity(document.get("id").toString(), document.get("title").toString(), document.get("icon").toString())
                 roomName.text = roomObj.title
-
                 val id: Int = this.resources.getIdentifier(roomObj.icon.toString(), "drawable", this.packageName)
                 roomImage.setImageResource(id)
 
                 setUpDeviceStates()
-
             }
+
+        new_device.setOnClickListener {
+            val intent = Intent(this, CreateActivity::class.java)
+            intent.putExtra("room_id",roomId)
+            startActivity(intent)
+        }
     }
 
     private fun setUpDeviceStates() {
@@ -88,7 +96,11 @@ class DetailActivity : ToolbarHelper() {
 
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
-                    var deviceObj = Device(document.get("id").toString(), document.get("title").toString(), document.get("room_id").toString(), document.get("state").toString().toBoolean(), document.get("pinNumber").toString().toInt())
+
+                    var deviceObj = Device(document.get("id").toString(), document.get("title").toString(),
+                        document.get("room_id").toString(), document.get("state").toString().toBoolean(),
+                        document.get("pinNumber").toString())
+
                     devicesList.add(deviceObj)
                     myAdapter.notifyDataSetChanged()
 
@@ -125,6 +137,7 @@ class DetailActivity : ToolbarHelper() {
             override fun messageArrived(topic: String?, message: MqttMessage?) {
                 Log.i(TAG, "MQTT Message: $topic, msg: ${message.toString()}")
                 // do nothing
+                // Technically, we wouldn't receive messages, but rather send them
             }
 
             override fun connectionLost(cause: Throwable?) {
@@ -143,9 +156,8 @@ class DetailActivity : ToolbarHelper() {
         mqttClient.subscribe("smarthome/${name}", 0) // 0 - is the QoS value
     }
 
-
     override fun onDestroy() {
-//        mqttClient.disconnect()
+        mqttClient.disconnect()
         super.onDestroy()
     }
 }

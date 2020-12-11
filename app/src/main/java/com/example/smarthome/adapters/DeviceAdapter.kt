@@ -13,9 +13,9 @@ import com.example.smarthome.entities.RoomEntity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.device_list_item.view.*
 import kotlinx.android.synthetic.main.room_list_item.view.*
+import org.eclipse.paho.client.mqttv3.MqttMessage
 
 class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerView.Adapter<RoomViewHolder>() {
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
@@ -39,6 +39,12 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
                 updateDeviceState(data.id, true)
             }else{
                 updateDeviceState(data.id, false)
+            }
+            // Here needs to send message to mqtt (a bit hacky)
+            if(context is DetailActivity){
+                var newMsg = MqttMessage()
+                newMsg.payload = "${data.pinNumber}:${if (isChecked) "unlock" else "lock"}".toByteArray()
+                (context as DetailActivity).mqttClient.publish("smarthome/devices", newMsg)
             }
         }
 

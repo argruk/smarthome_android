@@ -8,11 +8,6 @@
         app:showAsAction="collapseActionView" />
 
     <!-- Settings, should always be in the overflow -->
-    <item
-        android:id="@+id/add_device"
-        android:icon="@drawable/lights"
-        android:title="@string/add_device_menu"
-        app:showAsAction="collapseActionView" />
 
     <item
         android:id="@+id/settings"
