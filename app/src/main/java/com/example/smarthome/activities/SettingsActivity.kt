@@ -90,9 +90,12 @@ class SettingsActivity:ToolbarHelper() {
         }
         val mDialog = mBuilder.create()
         mDialog.show()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        mDialog.setOnDismissListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
+
 
     private fun setLocate(Lang: String) {
 

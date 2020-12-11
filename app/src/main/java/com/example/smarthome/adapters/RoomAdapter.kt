@@ -28,6 +28,12 @@ class RoomAdapter(var rooms: List<RoomEntity>, var context: Context): RecyclerVi
         val id: Int = context.resources.getIdentifier(data.icon.toString(), "drawable", context.packageName)
         holder.item.room_image.setImageResource(id)
 
+        holder.item.room_image.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("roomId", data.id)
+            context.startActivity(intent)
+        }
+
         holder.item.room_title.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
             intent.putExtra("roomId", data.id)
