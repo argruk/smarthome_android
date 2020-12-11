@@ -33,10 +33,6 @@ abstract class ToolbarHelper: AppCompatActivity() {
                 val intent = Intent(this, CreateRoomActivity::class.java)
                 startActivity(intent)
             }
-            R.id.add_device -> {
-                val intent = Intent(this, CreateActivity::class.java)
-                startActivity(intent)
-            }
             R.id.settings -> {
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)

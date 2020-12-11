@@ -2,9 +2,7 @@ package com.example.smarthome.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 import com.example.smarthome.R
 import com.example.smarthome.adapters.RoomAdapter
 import com.example.smarthome.entities.RoomEntity
@@ -22,8 +20,8 @@ class MainActivity : ToolbarHelper() {
         setContentView(R.layout.activity_main)
         loadData()
         myAdapter.notifyDataSetChanged()
-        all_rooms.layoutManager = LinearLayoutManager(this)
-        all_rooms.adapter = myAdapter
+        all_devices.layoutManager = LinearLayoutManager(this)
+        all_devices.adapter = myAdapter
     }
 
     private fun loadData() {

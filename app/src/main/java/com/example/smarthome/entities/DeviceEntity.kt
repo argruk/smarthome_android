@@ -9,5 +9,5 @@ data class Device(
     val title: String?,
     val room_id: String?,
     val state: Boolean?,
-    val pinNumber: Int?
+    val pinNumber: String?
 )
