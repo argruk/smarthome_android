@@ -17,13 +17,11 @@ import kotlinx.android.synthetic.main.settings_activity.*
 import java.util.*
 
 class SettingsActivity:ToolbarHelper() {
+    val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
         setContentView(R.layout.settings_activity)
-
-        val db = FirebaseFirestore.getInstance()
-
         language.setOnClickListener{
             showChangeLang()
         }
@@ -108,9 +106,13 @@ class SettingsActivity:ToolbarHelper() {
         config.locale = locale
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
-        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit() 
         editor.putString("My_Lang", Lang)
         editor.apply()
+
+        db.collection("settings")
+            .document("language")
+            .update("lang", Lang)
     }
 
     private fun loadLocate() {

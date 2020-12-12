@@ -26,4 +26,10 @@
     <string name="mqtt_connected">MQTT Connected, subscribing...</string>
     <string name="app_resetted">App has been resetted</string>
     <string name="add_device_string">Add Device</string>
+    <string name="room_details">Room Details</string>
+    <string name="state">State</string>
+    <string name="delete_all_data">Delete all data</string>
+    <string name="ui_mode_setting">UI Mode</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
 </resources>

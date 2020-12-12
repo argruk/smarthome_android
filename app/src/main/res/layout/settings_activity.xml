@@ -25,7 +25,7 @@
         android:layout_marginStart="192dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="213dp"
-        android:text="Delete all data"
+        android:text="@string/delete_all_data"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/language" />
@@ -37,9 +37,10 @@
         android:layout_marginStart="165dp"
         android:layout_marginTop="74dp"
         android:layout_marginEnd="172dp"
-        android:text="UI Mode"
-        android:textOff="Dark"
-        android:textOn="Light"
+        android:showText="true"
+        android:text="@string/ui_mode_setting"
+        android:textOff="@string/light"
+        android:textOn="@string/dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delete_all_data" />

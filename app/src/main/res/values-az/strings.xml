@@ -18,12 +18,18 @@
     <string name="all_devices_turned_off">Bütün Cihazlar Söndü</string>
     <string name="state_hasbeen_updated">Vəziyyət dəyişildi</string>
     <string name="state_doesnt_updated">Vəziyyəti dəyişmək mümkün olmadı</string>
-    <string name="room_hasbeen_added">Room has been added successfully</string>
-    <string name="room_didnt_added">Room has not been added!</string>
-    <string name="fillin_fields">Please, fill in all inputs</string>
-    <string name="device_hasbeen_added">Device has been added successfully</string>
-    <string name="device_dont_added">Device has not been added!</string>
-    <string name="mqtt_connected">MQTT Connected, subscribing...</string>
-    <string name="app_resetted">App has been resetted</string>
-    <string name="add_device_string">Add Device</string>
+    <string name="room_hasbeen_added">Otaq uğurla əlavə edildi</string>
+    <string name="room_didnt_added">Otaq əlavə edilə bilmədi</string>
+    <string name="fillin_fields">Zəhmət olmasa, bütün sahələri doldurun.</string>
+    <string name="device_hasbeen_added">Cihaz uğurla yükləndi.</string>
+    <string name="device_dont_added">Cihaz yüklənə bilmədi.</string>
+    <string name="mqtt_connected">MQTT Qoşuldu, izlənilir...</string>
+    <string name="app_resetted">Tətbiq sıfırlandı</string>
+    <string name="add_device_string">Cihaz Əlavə et</string>
+    <string name="room_details">Otaq detalları</string>
+    <string name="state">Durum</string>
+    <string name="delete_all_data">Tətbiqi sıfırla</string>
+    <string name="ui_mode_setting">İnterfeys rejimi</string>
+    <string name="dark">Gecə</string>
+    <string name="light">Gündüz</string>
 </resources>

@@ -8,7 +8,6 @@
     <string name="add_room">Add Room</string>
     <string name="add">Add</string>
     <string name="icon">Icon</string>
-    <string name="room_details" translatable="false">Room Details</string>
     <string name="active">Active</string>
     <string name="inactive">inactive</string>
     <string name="turn_off_all_devices">Turn off all devices</string>
@@ -28,4 +27,10 @@
     <string name="app_resetted">App has been resetted</string>
     <string name="ui_mode" translatable="false">Dark</string>
     <string name="add_device_string">Add Device</string>
+    <string name="room_details">Room Details</string>
+    <string name="state">State</string>
+    <string name="delete_all_data">Delete all data</string>
+    <string name="ui_mode_setting">UI Mode</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
 </resources>
