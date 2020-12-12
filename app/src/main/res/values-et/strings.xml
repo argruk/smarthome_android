@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Smart Home</string>
+
     <string name="all_rooms">ALL ROOMS</string>
     <string name="add_device">Add Device</string>
     <string name="device_name">Device Name</string>
@@ -25,7 +26,6 @@
     <string name="device_dont_added">Device has not been added!</string>
     <string name="mqtt_connected">MQTT Connected, subscribing...</string>
     <string name="app_resetted">App has been resetted</string>
-    <string name="ui_mode" translatable="false">Dark</string>
     <string name="add_device_string">Add Device</string>
     <string name="room_details">Room Details</string>
     <string name="state">State</string>

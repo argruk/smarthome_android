@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smarthome">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,7 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CreateRoomActivity">
+        <activity android:name=".activities.CreateRoomActivity"
+            android:parentActivityName=".activities.MainActivity">
+
+        </activity>
+        <activity android:name=".activities.CreateActivity"
+            android:parentActivityName=".activities.DetailActivity">
+
+        </activity>
+        <activity android:name=".activities.DetailActivity"
+            android:parentActivityName=".activities.MainActivity">
+
+        </activity>
+        <activity android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.MainActivity">
 
         </activity>
 
