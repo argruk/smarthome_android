@@ -7,7 +7,7 @@
     <string name="room_name">Room Name</string>
     <string name="add_room">Add Room</string>
     <string name="add">Add</string>
-    <string name="icon">Icon</string>
+    <string name="icon">Icon:</string>
     <string name="active">Active</string>
     <string name="inactive">Inactive</string>
     <string name="turn_off_all_devices">Turn off all devices</string>
@@ -33,4 +33,16 @@
     <string name="ui_mode_setting">UI Mode</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
+
+    <string-array name="icons">
+        <item>sofa</item>
+        <item>stove</item>
+        <item>garage</item>
+        <item>bed</item>
+        <item>bath</item>
+        <item>baby</item>
+        <item>laundry_room</item>
+    </string-array>
+
+
 </resources>

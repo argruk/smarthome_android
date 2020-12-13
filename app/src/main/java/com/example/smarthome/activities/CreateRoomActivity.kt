@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import com.example.smarthome.R
@@ -17,7 +18,9 @@ class CreateRoomActivity : ToolbarHelper() {
     private lateinit var mHandler: Handler
     private lateinit var mRunnable: Runnable
 
-    private fun startMainActivity() {
+
+
+        private fun startMainActivity() {
 
 
         mRunnable = Runnable {
@@ -35,6 +38,17 @@ class CreateRoomActivity : ToolbarHelper() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_room_activity)
 
+        val languages = resources.getStringArray(R.array.icons)
+        val spinner = icon_spinner
+        if (spinner != null) {
+            val adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item, languages
+            )
+            spinner.adapter = adapter
+        }
+
+
         val actionBar: ActionBar? = supportActionBar
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
@@ -45,7 +59,7 @@ class CreateRoomActivity : ToolbarHelper() {
 
         add_room.setOnClickListener {
             var name = room_name.text
-            var icon = icon.text
+            var icon = icon_spinner.selectedItem.toString()
 
             if (name?.isNotEmpty()?.and(icon?.isNotEmpty()!!)!!) {
 

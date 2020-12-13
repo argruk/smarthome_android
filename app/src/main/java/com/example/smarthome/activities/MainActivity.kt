@@ -20,8 +20,8 @@ class MainActivity : ToolbarHelper() {
         setContentView(R.layout.activity_main)
         loadData()
         myAdapter.notifyDataSetChanged()
-        all_devices.layoutManager = LinearLayoutManager(this)
-        all_devices.adapter = myAdapter
+        all_devices_view.layoutManager = LinearLayoutManager(this)
+        all_devices_view.adapter = myAdapter
     }
 
     private fun loadData() {

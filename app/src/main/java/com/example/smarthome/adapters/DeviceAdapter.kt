@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.recreate
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
 import com.example.smarthome.activities.DetailActivity
@@ -55,6 +56,7 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
         db.collection("devices").document(id.toString()).update("state", state)
             .addOnCompleteListener {
                 Toast.makeText(context, R.string.state_hasbeen_updated, Toast.LENGTH_SHORT).show()
+                //recreate()
             }
             .addOnFailureListener {
                 Toast.makeText(context, R.string.state_doesnt_updated, Toast.LENGTH_SHORT).show()
