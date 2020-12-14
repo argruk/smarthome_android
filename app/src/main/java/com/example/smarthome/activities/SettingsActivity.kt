@@ -5,25 +5,21 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.smarthome.R
-import com.example.smarthome.entities.RoomEntity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.settings_activity.*
 import java.util.*
 
 class SettingsActivity:ToolbarHelper() {
+    val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadLocate()
         setContentView(R.layout.settings_activity)
-
-        val db = FirebaseFirestore.getInstance()
-
         language.setOnClickListener{
             showChangeLang()
         }
@@ -111,6 +107,10 @@ class SettingsActivity:ToolbarHelper() {
         val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
         editor.putString("My_Lang", Lang)
         editor.apply()
+
+        db.collection("settings")
+            .document("language")
+            .update("lang", Lang)
     }
 
     private fun loadLocate() {

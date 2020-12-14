@@ -19,13 +19,6 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttMessage
 
 class DetailActivity : ToolbarHelper() {
-    /*
-    * TODO: We need "Back" button, since after we add a device, you cannot go back.
-    *
-    * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    *
-    * TODO: Test newer MQTT and rework the communication, so MQTT can parse messages correctly
-    * */
 
     private val MQTT_BROKER_IP = "tcp://10.0.2.2:1883"
     // I mean come on, this is a useful comment
@@ -46,6 +39,11 @@ class DetailActivity : ToolbarHelper() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.room_layout_activity)
 
+        val actionbar = supportActionBar
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+
+
         roomId = intent.getStringExtra("roomId").toString()
 
         setUpLayout()
@@ -64,6 +62,11 @@ class DetailActivity : ToolbarHelper() {
         }
 
         setUpMqtt()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun setUpLayout() {

@@ -20,16 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CreateRoomActivity">
+        <activity android:name=".activities.CreateRoomActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:noHistory="true">
 
         </activity>
-        <activity android:name=".activities.CreateActivity">
+        <activity android:name=".activities.CreateActivity"
+            android:parentActivityName=".activities.DetailActivity"
+            android:noHistory="true">
 
         </activity>
-        <activity android:name=".activities.DetailActivity">
+        <activity android:name=".activities.DetailActivity"
+            android:parentActivityName=".activities.MainActivity">
 
         </activity>
-        <activity android:name=".activities.SettingsActivity">
+        <activity android:name=".activities.SettingsActivity"
+            android:parentActivityName=".activities.MainActivity">
 
         </activity>
 

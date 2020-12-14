@@ -2,16 +2,10 @@ package com.example.smarthome.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import com.example.smarthome.R
 import com.example.smarthome.entities.Device
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.add_device_activity.*
 
 

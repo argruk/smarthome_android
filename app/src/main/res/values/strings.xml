@@ -7,10 +7,9 @@
     <string name="room_name">Room Name</string>
     <string name="add_room">Add Room</string>
     <string name="add">Add</string>
-    <string name="icon">Icon</string>
-    <string name="room_details" translatable="false">Room Details</string>
+    <string name="icon">Icon:</string>
     <string name="active">Active</string>
-    <string name="inactive">inactive</string>
+    <string name="inactive">Inactive</string>
     <string name="turn_off_all_devices">Turn off all devices</string>
     <string name="language">Language</string>
     <string name="add_room_menu">Add Room</string>
@@ -18,14 +17,32 @@
     <string name="settings">Settings</string>
     <string name="all_devices_turned_off">All devices switched off</string>
     <string name="state_hasbeen_updated">State has been updated</string>
-    <string name="state_doesnt_updated">State doesn\'t updated</string>
+    <string name="state_doesnt_updated">State was not updated</string>
     <string name="room_hasbeen_added">Room has been added successfully</string>
-    <string name="room_didnt_added">Room has not been added!</string>
+    <string name="room_didnt_added">Room was not added!</string>
     <string name="fillin_fields">Please, fill in all inputs</string>
     <string name="device_hasbeen_added">Device has been added successfully</string>
-    <string name="device_dont_added">Device has not been added!</string>
+    <string name="device_dont_added">Device was not added!</string>
     <string name="mqtt_connected">MQTT Connected, subscribing...</string>
-    <string name="app_resetted">App has been resetted</string>
+    <string name="app_resetted">App has been reset</string>
     <string name="ui_mode" translatable="false">Dark</string>
     <string name="add_device_string">Add Device</string>
+    <string name="room_details">Room Details</string>
+    <string name="state">State</string>
+    <string name="delete_all_data">Delete all data</string>
+    <string name="ui_mode_setting">UI Mode</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+
+    <string-array name="icons">
+        <item>sofa</item>
+        <item>stove</item>
+        <item>garage</item>
+        <item>bed</item>
+        <item>bath</item>
+        <item>baby</item>
+        <item>laundry_room</item>
+    </string-array>
+
+
 </resources>

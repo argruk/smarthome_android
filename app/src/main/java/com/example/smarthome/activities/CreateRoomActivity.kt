@@ -3,18 +3,13 @@ package com.example.smarthome.activities
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.text.TextUtils
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
+import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import com.google.firebase.firestore.FirebaseFirestore
+import androidx.appcompat.app.ActionBar
 import com.example.smarthome.R
 import com.example.smarthome.entities.RoomEntity
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.add_room_activity.*
-import java.util.*
-import kotlin.collections.HashMap
 
 
 class CreateRoomActivity : ToolbarHelper() {
@@ -22,7 +17,9 @@ class CreateRoomActivity : ToolbarHelper() {
     private lateinit var mHandler: Handler
     private lateinit var mRunnable: Runnable
 
-    private fun startMainActivity() {
+
+
+        private fun startMainActivity() {
 
 
         mRunnable = Runnable {
@@ -35,18 +32,35 @@ class CreateRoomActivity : ToolbarHelper() {
         mHandler.postDelayed(mRunnable, 2000)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_room_activity)
+
+        val languages = resources.getStringArray(R.array.icons)
+        val spinner = icon_spinner
+        if (spinner != null) {
+            val adapter = ArrayAdapter(
+                this,
+                android.R.layout.simple_spinner_item, languages
+            )
+            spinner.adapter = adapter
+        }
+
+
+        val actionBar: ActionBar? = supportActionBar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
 
         val db = FirebaseFirestore.getInstance()
         var new_id = db.collection("rooms").document().id
 
         add_room.setOnClickListener {
             var name = room_name.text
-            var icon = icon.text
+            var icon = icon_spinner.selectedItem.toString()
 
-            if (name.isNotEmpty() and icon.isNotEmpty()) {
+            if (name?.isNotEmpty()?.and(icon?.isNotEmpty()!!)!!) {
 
                 val room = RoomEntity(new_id, name.toString(), icon.toString())
 
@@ -65,9 +79,9 @@ class CreateRoomActivity : ToolbarHelper() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.extra_menu, menu)
-        return super.onCreateOptionsMenu(menu);
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.extra_menu, menu)
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
 }
