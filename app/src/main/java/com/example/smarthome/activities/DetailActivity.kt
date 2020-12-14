@@ -34,6 +34,7 @@ class DetailActivity : ToolbarHelper() {
     val db = FirebaseFirestore.getInstance()
     var devicesList = mutableListOf<Device>()
     val myAdapter = DeviceAdapter(devicesList, this)
+    var reset = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,21 +53,17 @@ class DetailActivity : ToolbarHelper() {
         all_devices.adapter = myAdapter
 
         turn_off_all.setOnClickListener{
-            val count = devicesList.size
+            reset = true
             for(d in devicesList){
                 db.collection("devices")
                     .document(d.id.toString())
                     .update("state", false)
             }
-            
             devicesList.clear()
-
-            inactive_textView.text = count.toString()
-            active_textView.text = "0"
+            setUpDeviceStates()
 
             Toast.makeText(this, R.string.all_devices_turned_off, Toast.LENGTH_SHORT).show()
         }
-
         setUpMqtt()
     }
 
@@ -83,7 +80,6 @@ class DetailActivity : ToolbarHelper() {
                 roomName.text = roomObj.title
                 val id: Int = this.resources.getIdentifier(roomObj.icon.toString(), "drawable", this.packageName)
                 roomImage.setImageResource(id)
-
                 setUpDeviceStates()
             }
 
@@ -95,14 +91,13 @@ class DetailActivity : ToolbarHelper() {
     }
 
     private fun setUpDeviceStates() {
+        var active = 0
+        var inactive = 0
+
         db.collection("devices")
             .whereEqualTo("room_id", roomId)
             .get()
             .addOnSuccessListener { documents ->
-
-                var active = 0
-                var deactive = 0
-
                 for (document in documents) {
                     Log.d(TAG, "${document.id} => ${document.data}")
 
@@ -117,14 +112,11 @@ class DetailActivity : ToolbarHelper() {
                     if(flag){
                         active += 1
                     }else{
-                        deactive += 1
+                        inactive += 1
                     }
                 }
-
                 active_textView.text = active.toString()
-                inactive_textView.text = deactive.toString()
-
-
+                inactive_textView.text = inactive.toString()
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
