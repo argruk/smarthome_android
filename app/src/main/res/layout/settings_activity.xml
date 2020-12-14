@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/language"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="178dp"
-        android:text="@string/language"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/delete_all_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="213dp"
-        android:text="@string/delete_all_data"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/language" />
+        <Button
+            android:id="@+id/language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@string/language" />
 
-    <Switch
-        android:id="@+id/ui_mode"
-        android:layout_width="208dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginEnd="172dp"
-        android:showText="true"
-        android:text="@string/ui_mode_setting"
-        android:textOff="@string/light"
-        android:textOn="@string/dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_all_data" />
+        <Button
+            android:id="@+id/delete_all_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_all_data" />
+
+        <Switch
+            android:id="@+id/ui_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginTop="32dp"
+            android:showText="true"
+            android:text="@string/ui_mode_setting"
+            android:textOff="@string/light"
+            android:textOn="@string/dark"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
