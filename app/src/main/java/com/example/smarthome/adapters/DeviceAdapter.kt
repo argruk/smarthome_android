@@ -36,19 +36,28 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
 
         holder.item.state.setOnCheckedChangeListener{ _, isChecked ->
             // I know it is very hacky, and shouldn't be this way, but we're really short on time
-            var active = (context as DetailActivity).findViewById<TextView>(R.id.active_textView)
-            var inactive = (context as DetailActivity).findViewById<TextView>(R.id.inactive_textView)
+            val active = (context as DetailActivity).findViewById<TextView>(R.id.active_textView)
+            val inactive = (context as DetailActivity).findViewById<TextView>(R.id.inactive_textView)
 
-            if(isChecked){
-                updateDeviceState(data.id, true)
-                active.text = (active.text.toString().toInt()+1).toString()
-                inactive.text = (inactive.text.toString().toInt()-1).toString()
 
-            }else{
-                updateDeviceState(data.id, false)
-                active.text = (active.text.toString().toInt()-1).toString()
-                inactive.text = (inactive.text.toString().toInt()+1).toString()
-            }
+                if(isChecked){
+                    updateDeviceState(data.id, true)
+                    if (active.text.toString().toInt() < devices.size){
+                        active.text = (active.text.toString().toInt() + 1).toString()
+                    }
+                    if (inactive.text.toString().toInt() > 0){
+                        inactive.text = (inactive.text.toString().toInt() - 1).toString()
+                    }
+                }else{
+                    updateDeviceState(data.id, false)
+                    if (active.text.toString().toInt() > 0){
+                        active.text = (active.text.toString().toInt() - 1).toString()
+                    }
+                    if (inactive.text.toString().toInt() < devices.size){
+                        inactive.text = (inactive.text.toString().toInt() + 1).toString()
+                    }
+                }
+
 
             // Here needs to send message to mqtt (a bit hacky)
             // We may want to send some more stuff, but that is for later. These methods should also be broken down
