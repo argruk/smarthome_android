@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.smarthome.R
-import com.example.smarthome.entities.RoomEntity
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.settings_activity.*
 import java.util.*
@@ -106,7 +104,7 @@ class SettingsActivity:ToolbarHelper() {
         config.locale = locale
         baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
 
-        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit() 
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
         editor.putString("My_Lang", Lang)
         editor.apply()
 
