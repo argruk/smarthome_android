@@ -1,11 +1,11 @@
 #include <ESP32Servo.h>
 #include <WiFi.h>
 #include <PubSubClient.h>
-const char* ssid     = "ut-public";
-const char* password = "";
+const char* ssid     = "FD-70";
+const char* password = "wifi2018";
 // To find the IP, in your computer (Windows), in command line type "ipconfig" and look at the "Wireless LAN adapter -> IPv4" address.
 // If you have MacOS - google yourself :)
-const char* mqtt_server = "172.19.155.110";
+const char* mqtt_server = "192.168.43.14";
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -28,7 +28,7 @@ void reconnect() {
     // Attempt to connect
     if (mqttClient.connect(clientId.c_str())) {
       Serial.println("Connected");
-      mqttClient.subscribe("smarthome/device1");
+      mqttClient.subscribe("smarthome/devices");
       // Connected - do something useful - subscribe to topics, publish messages, etc.
     } else {
       Serial.print("failed, rc=");
@@ -74,14 +74,14 @@ void callback(char* topic, byte* message, unsigned int length) {
   // If a message is received on the topic smarthome/device1, you check if the message is either "lock" or "unlock". 
   // Changes the function execution state according to the message
   if (String(topic) == "smarthome/devices") {
-    if(messageTemp == "lock"){
+    if(messageTemp == "device1:lock"){
       Serial.println("lock");
       lock();
     }
     else if(messageTemp == "device1:unlock"){
-      Serial.println(messageTemp);
+      Serial.println("unlock");
       unlock();
-    }else if(messageTemp == "device1:lock"){
+    }else{
       Serial.println(messageTemp);
     }
   }
@@ -109,7 +109,7 @@ void setup() {
 
     // Set up MQTT
     mqttClient.setServer(mqtt_server, 1883);
-    mqttClient.subscribe("smarthome/device1");
+    mqttClient.subscribe("smarthome/devices");
     mqttClient.setCallback(callback);
     
   
@@ -129,10 +129,5 @@ if (!mqttClient.connected()) {
   }
   mqttClient.loop();
   delay(1000); 
-  if(isOpen){
-    mqttClient.publish("smarthome/device1",String("true").c_str());
-  }else{
-    mqttClient.publish("smarthome/device1",String("false").c_str());
-  }
   
 }

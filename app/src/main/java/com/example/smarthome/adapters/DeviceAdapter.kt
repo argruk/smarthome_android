@@ -49,14 +49,17 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
                 active.text = (active.text.toString().toInt()-1).toString()
                 inactive.text = (inactive.text.toString().toInt()+1).toString()
             }
+
             // Here needs to send message to mqtt (a bit hacky)
+            // We may want to send some more stuff, but that is for later. These methods should also be broken down
+            // if we want to add more devices, etc. (to make more logic than just on/off)
+
             if(context is DetailActivity){
                 var newMsg = MqttMessage()
                 newMsg.payload = "${data.pinNumber}:${if (isChecked) "unlock" else "lock"}".toByteArray()
                 (context as DetailActivity).mqttClient.publish("smarthome/devices", newMsg)
             }
         }
-
     }
 
     private fun updateDeviceState(id: String?, state: Boolean) {
