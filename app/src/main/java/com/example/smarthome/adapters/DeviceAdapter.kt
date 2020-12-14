@@ -41,13 +41,24 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
 
             if(isChecked){
                 updateDeviceState(data.id, true)
-                active.text = (active.text.toString().toInt()+1).toString()
-                inactive.text = (inactive.text.toString().toInt()-1).toString()
+                if(inactive.text.toString().toInt() > 0){
+                    active.text = (active.text.toString().toInt()+1).toString()
+                    inactive.text = (inactive.text.toString().toInt()-1).toString()
+                }else{
+                    inactive.text = "0"
+                    active.text = devices.size.toString()
+                }
+
 
             }else{
                 updateDeviceState(data.id, false)
-                active.text = (active.text.toString().toInt()-1).toString()
-                inactive.text = (inactive.text.toString().toInt()+1).toString()
+                if(active.text.toString().toInt() > 0){
+                    active.text = (active.text.toString().toInt()-1).toString()
+                    inactive.text = (inactive.text.toString().toInt()+1).toString()
+                }else{
+                    active.text = "0"
+                    inactive.text = devices.size.toString()
+                }
             }
 
             // Here needs to send message to mqtt (a bit hacky)

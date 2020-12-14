@@ -8,6 +8,6 @@ data class Device(
     @PrimaryKey(autoGenerate = true) val id: String?,
     val title: String?,
     val room_id: String?,
-    val state: Boolean?,
+    var state: Boolean?,
     val pinNumber: String?
 )

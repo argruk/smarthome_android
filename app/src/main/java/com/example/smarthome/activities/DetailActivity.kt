@@ -57,12 +57,15 @@ class DetailActivity : ToolbarHelper() {
                 db.collection("devices")
                     .document(d.id.toString())
                     .update("state", false)
-            }
-            
-            devicesList.clear()
 
-            inactive_textView.text = count.toString()
+                d.state = false
+                myAdapter.notifyDataSetChanged()
+            }
+
             active_textView.text = "0"
+            inactive_textView.text = count.toString()
+//            devicesList.clear()
+//            setUpDeviceStates()
 
             Toast.makeText(this, R.string.all_devices_turned_off, Toast.LENGTH_SHORT).show()
         }
