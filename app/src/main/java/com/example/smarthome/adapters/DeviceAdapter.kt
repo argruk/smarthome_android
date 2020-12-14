@@ -3,6 +3,7 @@ package com.example.smarthome.adapters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
@@ -32,11 +33,21 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
         holder.item.state.isChecked = data.state.toString().toBoolean()
 
 
+
         holder.item.state.setOnCheckedChangeListener{ _, isChecked ->
+            // I know it is very hacky, and shouldn't be this way, but we're really short on time
+            var active = (context as DetailActivity).findViewById<TextView>(R.id.active_textView)
+            var inactive = (context as DetailActivity).findViewById<TextView>(R.id.inactive_textView)
+
             if(isChecked){
                 updateDeviceState(data.id, true)
+                active.text = (active.text.toString().toInt()+1).toString()
+                inactive.text = (inactive.text.toString().toInt()-1).toString()
+
             }else{
                 updateDeviceState(data.id, false)
+                active.text = (active.text.toString().toInt()-1).toString()
+                inactive.text = (inactive.text.toString().toInt()+1).toString()
             }
             // Here needs to send message to mqtt (a bit hacky)
             if(context is DetailActivity){
@@ -53,7 +64,6 @@ class DeviceAdapter(var devices: List<Device>, var context: Context): RecyclerVi
         db.collection("devices").document(id.toString()).update("state", state)
             .addOnCompleteListener {
                 Toast.makeText(context, R.string.state_hasbeen_updated, Toast.LENGTH_SHORT).show()
-                (context as DetailActivity).recreate()
             }
             .addOnFailureListener {
                 Toast.makeText(context, R.string.state_doesnt_updated, Toast.LENGTH_SHORT).show()

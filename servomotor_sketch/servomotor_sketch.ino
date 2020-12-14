@@ -73,15 +73,15 @@ void callback(char* topic, byte* message, unsigned int length) {
 
   // If a message is received on the topic smarthome/device1, you check if the message is either "lock" or "unlock". 
   // Changes the function execution state according to the message
-  if (String(topic) == "smarthome/device1") {
+  if (String(topic) == "smarthome/devices") {
     if(messageTemp == "lock"){
       Serial.println("lock");
       lock();
     }
-    else if(messageTemp == "unlock"){
-      Serial.println("unlock");
+    else if(messageTemp == "device1:unlock"){
+      Serial.println(messageTemp);
       unlock();
-    }else{
+    }else if(messageTemp == "device1:lock"){
       Serial.println(messageTemp);
     }
   }
