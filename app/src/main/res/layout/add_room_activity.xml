@@ -1,85 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/room_name"
-        style="@style/Widget.Shrine.TextInputLayout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="132dp"
-        android:layout_marginEnd="100dp"
-        android:ems="10"
-        android:hint="@string/room_name"
-        android:inputType="textPersonName"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></com.google.android.material.textfield.TextInputEditText>
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
+        <TextView
 
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="169dp"
-        android:fontFamily="@font/aldrich"
-        android:text="@string/add_room"
-        style="@style/TextAppearance.Shrine.Title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.563"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/textView"
+            style="@style/TextAppearance.Shrine.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="@font/aldrich"
+            android:text="@string/add_room"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_room"
-        style="@style/Widget.Shrine.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="340dp"
-        android:text="@string/add"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_spinner"
-        app:layout_constraintVertical_bias="0.0"></com.google.android.material.button.MaterialButton>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/room_name"
+            style="@style/Widget.Shrine.TextInputLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_weight="3"
+            android:ems="10"
+            android:hint="@string/room_name"
+            android:inputType="textPersonName"></com.google.android.material.textfield.TextInputEditText>
 
-    <Spinner
-        android:id="@+id/icon_spinner"
-        style="@android:style/Widget.Material.Spinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icontext" />
+        <TextView
+            android:id="@+id/icontext"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_weight="2"
+            android:text="@string/icon"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/icontext"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="258dp"
-        android:text="@string/icon"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/room_name" />
+        <Spinner
+            android:id="@+id/icon_spinner"
+            style="@android:style/Widget.Material.Spinner"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_weight="2"
+            android:spinnerMode="dropdown" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_room"
+            style="@style/Widget.Shrine.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/add"
+            android:textSize="14sp"></com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
