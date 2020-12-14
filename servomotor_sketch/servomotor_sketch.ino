@@ -81,6 +81,10 @@ void callback(char* topic, byte* message, unsigned int length) {
     else if(messageTemp == "device1:unlock"){
       Serial.println("unlock");
       unlock();
+    }else if(messageTemp == "lamp:unlock"){
+      Serial.println(messageTemp);
+    }else if(messageTemp == "lamp:lock"){
+      Serial.println(messageTemp);
     }else{
       Serial.println(messageTemp);
     }

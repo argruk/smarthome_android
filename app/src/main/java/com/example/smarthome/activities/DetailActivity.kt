@@ -20,6 +20,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage
 
 class DetailActivity : ToolbarHelper() {
 
+//    private val MQTT_BROKER_IP = "tcp://192.168.43.14:1883"
     private val MQTT_BROKER_IP = "tcp://10.0.2.2:1883"
     // I mean come on, this is a useful comment
     // Note: If you want to use emulator, and access a broker running on the emulators host (your laptop),
@@ -51,13 +52,18 @@ class DetailActivity : ToolbarHelper() {
         all_devices.adapter = myAdapter
 
         turn_off_all.setOnClickListener{
+            val count = devicesList.size
             for(d in devicesList){
                 db.collection("devices")
                     .document(d.id.toString())
                     .update("state", false)
             }
+            
             devicesList.clear()
-            setUpDeviceStates()
+
+            inactive_textView.text = count.toString()
+            active_textView.text = "0"
+
             Toast.makeText(this, R.string.all_devices_turned_off, Toast.LENGTH_SHORT).show()
         }
 
